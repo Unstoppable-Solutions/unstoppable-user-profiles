@@ -1,21 +1,44 @@
 <?php
 /**
- * Uninstall handler for __PLUGIN_NAME__.
+ * Uninstall routine.
  *
- * Runs when the plugin is deleted from Plugins → Installed Plugins. Deactivation
- * alone does NOT trigger this file. Clean up all plugin data (database tables,
- * options, transients, cron hooks) so the site is returned to the state it
- * was in before the plugin was installed.
+ * Removes plugin options, per-user profile-photo meta, and the dedicated avatar
+ * directory. Runs only when the plugin is deleted from the Plugins screen.
  *
- * @package __PLUGIN_PACKAGE__
+ * @package Unstoppable_User_Profiles
  */
 
-defined( 'WP_UNINSTALL_PLUGIN' ) || exit;
+if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+	exit;
+}
 
-// Example cleanup — adjust as the plugin grows:
-//
-// delete_option( '__prefix___settings' );
-// delete_option( '__prefix___db_version' );
-//
-// global $wpdb;
-// $wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}__prefix___my_table" );
+// Remove options.
+$uupr_options = array(
+	'uupr_max_upload_mb',
+	'uupr_moderate_uploads',
+	'uupr_enabled_fields',
+	'uupr_install_date',
+);
+foreach ( $uupr_options as $uupr_option ) {
+	delete_option( $uupr_option );
+}
+
+// Remove per-user avatar meta.
+delete_metadata( 'user', 0, 'uupr_avatar', '', true );
+delete_metadata( 'user', 0, 'uupr_avatar_pending', '', true );
+
+// Remove the dedicated avatar directory and its contents via WP_Filesystem.
+$uupr_uploads = wp_get_upload_dir();
+$uupr_dir     = trailingslashit( $uupr_uploads['basedir'] ) . 'uupr-avatars';
+
+if ( is_dir( $uupr_dir ) ) {
+	global $wp_filesystem;
+
+	if ( ! function_exists( 'WP_Filesystem' ) ) {
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+	}
+
+	if ( WP_Filesystem() && $wp_filesystem->is_dir( $uupr_dir ) ) {
+		$wp_filesystem->delete( $uupr_dir, true );
+	}
+}
