@@ -3,7 +3,7 @@
  * Plugin Name:       Unstoppable User Profiles
  * Plugin URI:        https://unstoppablesolutions.app/plugins/unstoppable-user-profiles
  * Description:       Let logged-in members edit their own profile and upload a profile photo from the front end — no media library access, works with any membership plugin.
- * Version:           1.1.3
+ * Version:           1.1.4
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Unstoppable Solutions
@@ -12,7 +12,6 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       unstoppable-user-profiles
  * Domain Path:       /languages
- * Tested up to:      7.1
  *
  * @package Unstoppable_User_Profiles
  */
@@ -24,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Core constants.
  */
-define( 'UUPR_VERSION', '1.1.3' );
+define( 'UUPR_VERSION', '1.1.4' );
 define( 'UUPR_PLUGIN_FILE', __FILE__ );
 define( 'UUPR_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'UUPR_PLUGIN_URL', plugin_dir_url( __FILE__ ) );

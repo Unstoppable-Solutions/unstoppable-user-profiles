@@ -4,7 +4,7 @@ Tags: profile, avatar, user profile, profile photo, front-end
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,6 +58,9 @@ No. Photos are stored in a dedicated uploads folder and are never added as media
 
 == Changelog ==
 
+= 1.1.4 =
+* Plugin Check metadata: removed the "Tested up to" line from the main plugin PHP header. The new Plugin Check rule requires that field to live only in readme.txt to prevent silent drift between the two values. No functional change.
+
 = 1.1.3 =
 * Fixed: resolved Plugin Check input-sanitization warnings — profile fields are now sanitized on access, and file-upload arrays carry correct, documented handling notes.
 
@@ -76,6 +79,9 @@ No. Photos are stored in a dedicated uploads folder and are never added as media
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.1.4 =
+Plugin Check metadata polish. No functional change; safe drop-in upgrade.
 
 = 1.1.3 =
 Clears all Plugin Check warnings. Recommended before submitting or distributing.
