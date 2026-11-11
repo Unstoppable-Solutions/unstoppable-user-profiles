@@ -59,7 +59,7 @@ No. Photos are stored in a dedicated uploads folder and are never added as media
 == Changelog ==
 
 = 1.1.4 =
-* Plugin Check metadata: removed the "Tested up to" line from the main plugin PHP header. The new Plugin Check rule requires that field to live only in readme.txt to prevent silent drift between the two values. No functional change.
+* Fixed: removed the "Tested up to" field from the plugin header (WordPress.org requires it in readme.txt only) and confirmed compatibility with WordPress 7.1, restoring the plugin to directory search results.
 
 = 1.1.3 =
 * Fixed: resolved Plugin Check input-sanitization warnings — profile fields are now sanitized on access, and file-upload arrays carry correct, documented handling notes.
@@ -81,7 +81,7 @@ No. Photos are stored in a dedicated uploads folder and are never added as media
 == Upgrade Notice ==
 
 = 1.1.4 =
-Plugin Check metadata polish. No functional change; safe drop-in upgrade.
+Metadata fix that restores WordPress.org search visibility and current-version compatibility. No functional changes.
 
 = 1.1.3 =
 Clears all Plugin Check warnings. Recommended before submitting or distributing.
